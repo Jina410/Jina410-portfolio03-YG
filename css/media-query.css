@@ -82,5 +82,5 @@
 }
 @media screen and (max-width: 499px) {
   #artist .artist-title {transform: scale(0.5); transform-origin: 45%;}
-
+  #cursor{display: none;}
 }
