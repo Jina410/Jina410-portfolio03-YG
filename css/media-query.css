@@ -1,0 +1,86 @@
+@media screen and (max-width: 1270px) {
+  #footer{height: 501px;}
+  #footer .sns-wrap {padding:56px 0; justify-content: flex-end;} 
+  #footer .sns-wrap li a{width: 90px; height: 90px; padding:25px;} 
+  #album .lp-wrap{left: 64%;}
+  #footer .bottom-wrap{flex-direction: column; gap:20px; align-items: flex-start;}
+  #footer .bottom-wrap .fotter-menu-wrap{align-items: flex-start;}
+  #footer .fotter-logo-wrap svg{display: none;}
+}
+@media screen and (max-width: 1200px) {
+  #header .container {padding: 30px 40px;}
+  #header .container ul li a{font-size: 0.8rem;}
+  #artist .artist-box-wrap .artist-box {justify-content: center;}
+  #artist .artist-box-wrap .artist-box .artist-item {width: 40%;}
+  #album {height: 1000px;}
+  #album .lp-wrap{left: 66%;}
+  #album .album-swiper-wrap {bottom:-230px;}
+  #album .mySwiper1 .swiper-wrapper .swiper-slide.active {transform: translateY(-110px) scale(1.1);}
+  #album .navigation-wrap {transform: scale(0.7) translateX(-50%); transform-origin: left; bottom: -210px;}
+  #album .album-cover-box .text-box {margin-top: 150px;}
+  #news .container {flex-direction: column;}
+  #news .news-item-wrap .news-item .img-wrap {left: auto; right:0;}
+  #brand .text-box{left:70px;}
+}
+@media screen and (max-width: 1100px) {
+  #album .lp-wrap{left: 68%;}
+}
+@media screen and (max-width: 1000px) {
+  #album .lp-wrap{left: 70%;}
+}
+@media screen and (max-width: 900px) {
+  .header-logo{transform: scale(0.8); transform-origin: center;}
+  #header .container ul li a {padding: 10px 10px;}
+  #album .lp-wrap{left: 72%;}
+  #album .navigation-wrap {transform: scale(0.6) translateX(-50%); transform-origin: left; bottom: -210px;}
+  #album .album-cover-box .text-box {margin-top: 200px;}
+  #brand .text-box p{width:671px;}
+  #album .fade-text {top: 39%;}
+}
+@media screen and (max-width: 850px) {
+  #album .lp-wrap{left: 74%;}
+}
+@media screen and (max-width: 768px) {
+  #top a{width: 50px; height: 50px;}
+  #top a:hover{width: 45px; height: 55px;}
+  #artist .artist-title {transform: scale(0.7); transform-origin: center; padding: 150px 0;}
+  #artist .artist-box-wrap .artist-box { gap: 30px}
+  #artist .artist-box-wrap .artist-box .artist-item {width: 80%;}
+  #artist .artist-box-wrap .artist-box .artist-item .img-box .bg {top: 700px;}
+  #artist .artist-box-wrap .artist-more-btn {transform: scale(0.8); margin:100px auto;}
+  #album {height: 900px;}
+  #album .album-swiper-wrap {width: 150%;}
+  #album .album-cover-box .text-box {margin-top: 110px;}
+  #album .album-cover-box {height: 400px;}
+  #news {padding-top:50px;}
+  #brand .text-box{left:40px; transform: translateY(-50%) scale(0.8); transform-origin: left;}
+  #brand .text-box p{width:400px;}
+  #footer .sns-wrap {gap:30px} 
+  #footer .sns-wrap li a{width: 40px; height: 40px; padding:0; background: transparent;} 
+  #footer .sns-wrap li svg path{fill:#fff;}
+  #footer .sns-wrap li:hover svg path{fill:var(--color-green1);}
+  #footer .sns-wrap li:hover a{background: transparent;}
+}
+@media screen and (max-width: 700px) {
+  #header .container {flex-direction: column;}
+  #album {height: 800px;}
+  #album .mySwiper1 .swiper-wrapper .swiper-slide.active {transform: translateY(-60px) scale(1.1);}
+  #album .navigation-wrap {transform: scale(0.6) translateX(-50%); transform-origin: left; bottom: -250px;}
+  #album .album-cover-box .text-box {margin-top: 80px;}
+  #album .album-cover-box {height: 300px;}
+  #album .numtilte {transform: scale(0.7); transform-origin: left;}
+  #album .album-cover-box .text-box {transform: scale(0.7) translateX(-50%); transform-origin: left;}
+  #news .numtilte {transform: scale(0.7); transform-origin: left;}
+  #news .news-item-wrap .text-wrap {width:90%}
+}
+@media screen and (max-width: 600px) {
+  #header .container ul li a {padding: 10px 5px; white-space: nowrap;}
+  #overview .overview-img_wrap h2 {font-size: 4rem;}
+  #footer .sns-wrap {transform: scale(0.8); transform-origin: right;} 
+  #footer .bottom-wrap{transform: scale(0.8); transform-origin: left;}
+  #header .container ul li a{font-size: 0.7rem;}
+}
+@media screen and (max-width: 499px) {
+  #artist .artist-title {transform: scale(0.5); transform-origin: 45%;}
+
+}

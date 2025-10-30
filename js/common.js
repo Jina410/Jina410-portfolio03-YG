@@ -70,7 +70,7 @@ $(function () {
     mx += (x - mx) * 0.1;
     my += (y - my) * 0.1;
 
-      $cursor.css({
+    $cursor.css({
       left: mx + "px",
       top: my + "px",
     });
@@ -78,37 +78,59 @@ $(function () {
   }
   move();
 
-$(function () {
-  $('.mySwiper1').on('mouseenter', function () {
-    $('#cursor').addClass("drag");
-    $('#cursor span:nth-child(1)').addClass("drag-on");
+  $(function () {
+    $('.mySwiper1').on('mouseenter', function () {
+      $('#cursor').addClass("drag");
+      $('#cursor span:nth-child(1)').addClass("drag-on");
+    })
+    $('.mySwiper1').on('mouseleave', function () {
+      $('#cursor').removeClass("drag");
+      $('#cursor span:nth-child(1)').removeClass("drag-on");
+    })
   })
-  $('.mySwiper1').on('mouseleave', function () {
-    $('#cursor').removeClass("drag");
-    $('#cursor span:nth-child(1)').removeClass("drag-on");
-  })
-})
 
-$(function () {
-  $('.overview-img_wrap,#brand').on('mouseenter', function () {
-    $('#cursor').addClass("scroll");
-    $('#cursor span:nth-child(2)').addClass("scroll-on");
+  $(function () {
+    $('.overview-img_wrap,#brand').on('mouseenter', function () {
+      $('#cursor').addClass("scroll");
+      $('#cursor span:nth-child(2)').addClass("scroll-on");
+    })
+    $('.overview-img_wrap,#brand').on('mouseleave', function () {
+      $('#cursor').removeClass("scroll");
+      $('#cursor span:nth-child(2)').removeClass("scroll-on");
+    })
   })
-  $('.overview-img_wrap,#brand').on('mouseleave', function () {
-    $('#cursor').removeClass("scroll");
-    $('#cursor span:nth-child(2)').removeClass("scroll-on");
-  })
-})
 
-$(function () {
-  $('.artist-item, .artist-more-btn, .album-more-btn, .news-item a').on('mouseenter', function () {
-    $('#cursor').addClass("click");
-    $('#cursor span:nth-child(3)').addClass("click-on");
+  $(function () {
+    $('.artist-item, .artist-more-btn, .album-more-btn, .news-item a').on('mouseenter', function () {
+      $('#cursor').addClass("click");
+      $('#cursor span:nth-child(3)').addClass("click-on");
+    })
+    $('.artist-item, .artist-more-btn, .album-more-btn, .news-item a').on('mouseleave', function () {
+      $('#cursor').removeClass("click");
+      $('#cursor span:nth-child(3)').removeClass("click-on");
+    })
   })
-  $('.artist-item, .artist-more-btn, .album-more-btn, .news-item a').on('mouseleave', function () {
-    $('#cursor').removeClass("click");
-    $('#cursor span:nth-child(3)').removeClass("click-on");
+  
+  $(function () {
+    $('#top').on('mouseenter', function () {
+      $('#cursor').addClass("top");
+    })
+    $('#top').on('mouseleave', function () {
+      $('#cursor').removeClass("top");
+    })
   })
-})
-
 });
+
+
+$(function () {
+  $(window).scroll(function () {
+    let st = $(window).scrollTop();
+    let winH = $(window).height();
+
+    if (st > winH - 300) {
+      $("#top").addClass("on");
+    } else {
+      $("#top").removeClass("on");
+    }
+  })
+})

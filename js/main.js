@@ -28,71 +28,107 @@ $(function () {
 $(function () {
   gsap.registerPlugin(ScrollTrigger);
 
-  const $artistItem1 = $('#artist .artist-box-wrap .artist-box .artist-item:nth-child(1)');
-  const $artistItem2 = $('#artist .artist-box-wrap .artist-box .artist-item:nth-child(2)');
-  const $artistItem3 = $('#artist .artist-box-wrap .artist-box .artist-item:nth-child(3)');
-  const $artistItem4 = $('#artist .artist-box-wrap .artist-box .artist-item:nth-child(4)');
-  const $artistItem5 = $('#artist .artist-box-wrap .artist-box .artist-item:nth-child(5)');
-  const $artistItem6 = $('#artist .artist-box-wrap .artist-box .artist-item:nth-child(6)');
+  ScrollTrigger.matchMedia({
 
-  const ani2 = gsap.timeline({
-    scrollTrigger: {
-      trigger: "#artist",
-      start: "20% 100%",
-      end: "+=100%",
-      scrub: true,
-      // pin: true,
-      anticipatePin: 1,
-      // markers: true,
+    "(min-width: 1201px)": function () {
+      const $artistItem1 = $('#artist .artist-box-wrap .artist-box .artist-item:nth-child(1)');
+      const $artistItem2 = $('#artist .artist-box-wrap .artist-box .artist-item:nth-child(2)');
+      const $artistItem3 = $('#artist .artist-box-wrap .artist-box .artist-item:nth-child(3)');
+      const $artistItem4 = $('#artist .artist-box-wrap .artist-box .artist-item:nth-child(4)');
+      const $artistItem5 = $('#artist .artist-box-wrap .artist-box .artist-item:nth-child(5)');
+      const $artistItem6 = $('#artist .artist-box-wrap .artist-box .artist-item:nth-child(6)');
+
+      const ani2 = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#artist",
+          start: "20% 100%",
+          end: "+=100%",
+          scrub: true,
+          // pin: true,
+          anticipatePin: 1,
+          // markers: true,
+        }
+      });
+
+      ani2.to([$artistItem1, $artistItem3, $artistItem4, $artistItem6], { y: 50, });
+      ani2.to([$artistItem2, $artistItem5], { y: -50, }, "<");
+    },
+    "(max-width: 1200px)": function () {
+      // #artist 관련 ScrollTrigger만 제거
+      ScrollTrigger.getAll().forEach(st => {
+        if (st.vars.trigger && $(st.vars.trigger).is("#artist")) {
+          st.kill();
+        }
+      });
+
+      // 스타일 초기화 (transform 등 제거)
+      gsap.set("#artist .artist-box-wrap .artist-box .artist-item", { clearProps: "all" });
     }
+
   });
 
-  ani2.to([$artistItem1, $artistItem3, $artistItem4, $artistItem6], { y: 50, });
-  ani2.to([$artistItem2, $artistItem5], { y: -50, }, "<");
+
 })
 
 //* #album애니메이션
 $(function () {
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.matchMedia({
+    "(min-width: 769px)": function () {
+      const ani3 = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#album",
+          start: "50% 60%",
+          // end: "100% 100%",
+          // scrub: true,
+          // pin: true,
+          // anticipatePin: 1,
+          // markers: true,
+        }
+      });
 
-  const ani3 = gsap.timeline({
-    scrollTrigger: {
-      trigger: "#album",
-      start: "50% 60%",
-      // end: "100% 100%",
-      // scrub: true,
-      // pin: true,
-      // anticipatePin: 1,
-      // markers: true,
+      ani3.to(".fade-text", { y: -200, opacity: 0, duration: 2 });
+      ani3.from(".lp-wrap", { rotate: -40, x: -240, duration: 1, ease: "power2.out" }, "<");
+
+      const ani4 = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#album",
+          start: "top top",
+          end: "+=200% top",
+          scrub: 1,
+          toggleActions: "play none none none",
+          pin: true,
+          // anticipatePin: 1,
+          // markers: true,
+          // toggleActions: "play none reverse none",
+        }
+      });
+
+      ani4.from(".album-cover-box", { left: "45%", width: "500px", height: "500px", transformOrigin: "center center", ease: "power2.out", duration: 2 }, 4);
+      ani4.fromTo(".album-cover-box .text-box", { opacity: 0, }, { opacity: 0 }, "<0.5")
+      ani4.fromTo(".album-cover-box img", { filter: "blur(0px) brightness(100%)" }, { filter: "blur(4px) brightness(50%)", ease: "power2.out" }, "<");
+
+      ani4.from("#album .numtilte", { y: -200, opacity: 0, duration: 3 });
+      ani4.to(".album-cover-box .text-box", { opacity: 1, duration: 3 }, "<0.2")
+      ani4.from(".navigation-wrap", { y: 300, opacity: 0, duration: 3 }, "<");
+      ani4.from(".album-swiper-wrap", { y: 300, opacity: 0, duration: 3 }, "<");
+      ani4.to(".fade-text", { y: 200, duration: 10 }, 5)
+    },
+    "(max-width: 768px)": function () {
+      // #album 관련 ScrollTrigger만 제거
+      ScrollTrigger.getAll().forEach(st => {
+        if (st.vars.trigger && $(st.vars.trigger).is("#album")) {
+          st.kill();
+        }
+      });
+
+      // #album 관련 요소만 초기화
+      gsap.set("#album .fade-text, #album .lp-wrap, #album .album-cover-box, #album .album-cover-box img, #album .album-cover-box .text-box, #album .navigation-wrap, #album .album-swiper-wrap, #album .numtilte", {
+        clearProps: "all"
+      });
     }
+
   });
-
-  ani3.to(".fade-text", { y: -200, opacity: 0, duration: 2 });
-  ani3.from(".lp-wrap", { rotate: -40, x: -240, duration: 1, ease: "power2.out" }, "<");
-
-  const ani4 = gsap.timeline({
-    scrollTrigger: {
-      trigger: "#album",
-      start: "top top",
-      end: "+=200% top",
-      scrub: 1,
-      toggleActions: "play none none none",
-      pin: true,
-      // anticipatePin: 1,
-      // markers: true,
-      // toggleActions: "play none reverse none",
-    }
-  });
-
-  ani4.from(".album-cover-box", { left: "45%", width: "500px", height: "500px", transformOrigin: "center center", ease: "power2.out", duration: 2 }, 4);
-  ani4.fromTo(".album-cover-box .text-box", { opacity: 0, }, { opacity: 0 }, "<0.5")
-  ani4.fromTo(".album-cover-box img", { filter: "blur(0px) brightness(100%)" }, { filter: "blur(4px) brightness(50%)", ease: "power2.out" }, "<");
-
-  ani4.from("#album .numtilte", { y: -200, opacity: 0, duration: 3 });
-  ani4.to(".album-cover-box .text-box", { opacity: 1, duration: 3 }, "<0.2")
-  ani4.from(".navigation-wrap", { y: 300, opacity: 0, duration: 3 }, "<");
-  ani4.from(".album-swiper-wrap", { y: 300, opacity: 0, duration: 3 }, "<");
-  ani4.to(".fade-text", { y: 200, duration: 10 }, 5)
 })
 
 //* #news애니메이션
@@ -127,22 +163,22 @@ $(function () {
       // markers: true,
       // toggleActions: "play none reverse none",
       onUpdate: self => {
-      const img = document.querySelector("#brand .img-wrap img");
-      if (self.progress > 0.53) {
-        img.src = "img/main/brand_img2.jpg";
-      } else {
-        img.src = "img/main/brand_img1.jpg";
+        const img = document.querySelector("#brand .img-wrap img");
+        if (self.progress > 0.53) {
+          img.src = "img/main/brand_img2.jpg";
+        } else {
+          img.src = "img/main/brand_img1.jpg";
+        }
       }
-    }
     }
   });
 
   ani6.fromTo("#brand .img-wrap",
-    { rotationY: 0, rotationX: 0, scale: 0.5, duration: 1,filter: "brightness(100%)" },
-    { rotationY: 180, rotationX: 180, scale: 1.05, transformOrigin: "center center", duration: 1, ease: "power2.in",filter: "brightness(50%)"}
-  ) 
-  .from("#brand .text-box",{y:200, opacity:0, duration: 0.5})
-  .to(".loop-text",{opacity:0},"<")
+    { rotationY: 0, rotationX: 0, scale: 0.5, duration: 1, filter: "brightness(100%)" },
+    { rotationY: 180, rotationX: 180, scale: 1.05, transformOrigin: "center center", duration: 1, ease: "power2.in", filter: "brightness(50%)" }
+  )
+    .from("#brand .text-box", { y: 200, opacity: 0, duration: 0.5 })
+    .to(".loop-text", { opacity: 0 }, "<")
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -154,7 +190,7 @@ $(function () {
 
     gsap.to($el, {
       x: -width,
-      duration: 40, 
+      duration: 40,
       ease: "linear",
       repeat: -1
     });
