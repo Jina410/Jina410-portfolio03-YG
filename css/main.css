@@ -1,0 +1,784 @@
+#cursor{
+  position: fixed;
+  z-index: 1000;
+  width: 20px; height: 20px;
+  border-radius: 100px;
+  /* background: #000000b9; */
+  backdrop-filter: invert(100%) grayscale(100%);
+  /* opacity: 0.8; */
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+
+  transition: .5s;
+}
+/* #cursor.drag{
+  width: 50px; height: 50px;
+}
+#cursor.click{
+} */
+/*! #header */
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: #fff;
+  transition: .2s ease-out;
+}
+
+#header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 40px;
+}
+
+#header .container ul {
+  display: flex;
+}
+
+#header .container ul li a {
+  padding: 10px 30px;
+  font-family: "Yeoljeongdo";
+  transition: .3s;
+}
+
+#header .container ul li a:hover {
+  color: var(--color-green2);
+}
+
+#header.active .container ul li a:hover {
+  color: var(--color-green4);
+}
+
+#header.active {
+  background-color: #000000d2;
+  backdrop-filter: blur(3px);
+  outline: 1px solid #ffffff10;
+  border-bottom: 1px solid #00000081;
+}
+
+#header.active .container ul li a {
+  color: #fff;
+}
+
+#header.active.hide {
+  top: -150px;
+}
+
+/*! #overview */
+#overview {
+  width: 100%;
+  height: 100vh;
+  padding-top: 145px;
+  padding-bottom: 80px;
+}
+
+#overview .overview-logo {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
+}
+
+#overview .overview-img_wrap {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  display: flex;
+  /* align-items: center; */
+  /* padding:0 40px; */
+  overflow: hidden;
+}
+
+#overview .overview-img_wrap h2 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font: normal 5rem/1.35 "Yeoljeongdo";
+  letter-spacing: 15px;
+  color: #fff;
+}
+
+#overview .overview-img_wrap h2:nth-child(1) {
+  opacity: 0;
+}
+
+#overview .overview-img_wrap h2:nth-child(2) {
+  opacity: 0;
+  letter-spacing: 0;
+  line-height: 1.1;
+}
+
+#overview .overview-img_wrap h2:nth-child(2) p {
+  letter-spacing: 9px;
+}
+
+#overview .overview-img_wrap b {
+  color: var(--color-green3);
+}
+
+#overview .overview-img_wrap .overview-bg img {
+  display: block;
+  width: auto;
+  height: 100%;
+  aspect-ratio: 1640/922;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ! #artist */
+#artist {
+  width: 100%;
+  height: 100%;
+  background: #0A090E;
+  padding-bottom: 5.2vw;
+}
+
+#artist .artist-title {
+  text-align: center;
+  color: var(--color-white3);
+  padding: 5.2vw 0;
+}
+
+#artist .artist-title h1 {
+  font: normal 4rem "Yeoljeongdo";
+}
+
+#artist .artist-box-wrap .artist-box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  gap: 1.8vw 3.8vw;
+}
+
+#artist .artist-box-wrap .artist-box .artist-item {
+  position: relative;
+  width: 30%;
+  height: fit-content;
+  aspect-ratio: 430/300;
+
+  transition: .2s;
+}
+
+#artist .artist-box-wrap .artist-box .artist-item:nth-child(2),
+#artist .artist-box-wrap .artist-box .artist-item:nth-child(5) {}
+
+#artist .artist-box-wrap .artist-box .artist-item a {
+  display: block;
+}
+
+#artist .artist-box-wrap .artist-box .artist-item span {
+  position: absolute;
+  z-index: 2;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-white3);
+  font-weight: bold;
+  opacity: 0;
+
+  transition: top .6s ease, opacity .8s ease;
+}
+
+#artist .artist-box-wrap .artist-box .artist-item .img-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 430/300;
+  overflow: hidden;
+}
+
+#artist .artist-box-wrap .artist-box .artist-item .img-box .bg {
+  position: absolute;
+  top: 500px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000ad;
+  border-radius: 50%;
+  transform: scale(2);
+
+  transition: 1s;
+}
+
+#artist .artist-box-wrap .artist-box .artist-item:hover {
+  border: 1px solid #ffffff31;
+  animation: shake4dir .3s ease-in-out 1;
+}
+
+@keyframes shake4dir {
+  0% {
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  25% {
+    margin-left: 3px;
+    margin-top: -3px;
+  }
+
+  50% {
+    margin-left: 0;
+    margin-top: 2px;
+  }
+
+  75% {
+    margin-left: -2px;
+    margin-top: 1px;
+  }
+
+  100% {
+    margin-left: 0;
+    margin-top: 0;
+  }
+}
+
+#artist .artist-box-wrap .artist-box .artist-item:hover span {
+  top: 50%;
+  opacity: 1;
+}
+
+#artist .artist-box-wrap .artist-box .artist-item:hover .img-box .bg {
+  top: 0;
+  border-radius: 20%;
+}
+
+#artist .artist-box-wrap .artist-box .artist-item .img-box img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#artist .artist-box-wrap .artist-more-btn {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 5.2vw;
+}
+
+#artist .artist-box-wrap .artist-more-btn img {
+  position: absolute;
+  top: 42px;
+  bottom: 42px;
+  z-index: 3;
+}
+
+#artist .artist-box-wrap .artist-more-btn a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#artist .artist-box-wrap .artist-more-btn .bg-white-color,
+#artist .artist-box-wrap .artist-more-btn .bg-green-color {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+#artist .artist-box-wrap .artist-more-btn .bg-white-color {
+  background: var(--color-white3);
+}
+
+#artist .artist-box-wrap .artist-more-btn .bg-green-color {
+  z-index: 2;
+  background: var(--color-green4);
+  transform: scale(0);
+
+  transition: .5s ease-in-out;
+}
+
+#artist .artist-box-wrap .artist-more-btn:hover .bg-green-color {
+  transform: scale(1);
+}
+
+/* ! #album */
+#album {
+  overflow: hidden;
+  width: 100%;
+  height: 1200px;
+  background: var(--color-white3);
+}
+
+#album .numtilte {
+  width: fit-content;
+  position: relative;
+  padding-top: 70px;
+  padding-bottom: 50px;
+}
+
+#album .numtilte h1 {
+  font: normal 4rem "Yeoljeongdo";
+}
+
+#album .numtilte .num-box {
+  width: auto;
+  position: absolute;
+  bottom: 40px;
+  right: -45px;
+  padding: 4px 20px 0 20px;
+  background: #00d440a9;
+  backdrop-filter: blur(4px);
+  border-radius: 70px;
+  border: 1px solid #fdfdfd8e;
+}
+
+#album .numtilte .num-box p {
+  font: normal 2rem "Yeoljeongdo";
+  color: var(--color-white3);
+}
+
+#album .album-cover-box {
+  position: relative;
+  width: 100%;
+  height: 534px;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+}
+
+/* #album .album-cover-box::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: #00000071;
+} */
+#album .album-cover-box .text-box {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  z-index: 2;
+  text-align: center;
+  margin-top: 122px;
+}
+
+#album .album-cover-box .text-box p {
+  font: 500 2rem "Poppins";
+  color: var(--color-white2);
+}
+
+#album .album-cover-box .text-box h2 {
+  font: bold 4rem/1 "Poppins";
+  color: var(--color-white3);
+}
+
+#album .album-cover-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: blur(4px) brightness(50%);
+  transform: scale(1.05);
+}
+
+#album .lp-wrap {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 63%;
+  left: 63%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+#album .lp-wrap .lp-img {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 186px;
+  height: 186px;
+  border-radius: 500px;
+  overflow: hidden;
+}
+
+#album .lp-wrap .lp-img>img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#album .lp-wrap>img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 484px;
+}
+
+#album .fade-text {
+  position: absolute;
+  z-index: -1;
+  top: 37%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  font: normal 4rem "Yeoljeongdo";
+}
+
+#album .album-section {
+  position: relative;
+}
+
+#album .album-swiper-wrap {
+  width: 100%;
+  max-width: 1637px;
+  height: 40vw;
+  min-height: 400px;
+  position: absolute;
+  bottom: -320px;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 5;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+#album .mySwiper1 {
+  width: 100%;
+  overflow: visible;
+}
+
+#album .mySwiper1 .swiper-wrapper .swiper-slide {
+  width: 650px;
+  overflow: hidden;
+  border-radius: 20px;
+  transition: .3s;
+}
+
+#album .mySwiper1 .swiper-wrapper .swiper-slide.active {
+  border: 1px solid #ffffffb9;
+  transform: translateY(-190px) scale(1.1);
+  z-index: 3;
+  transition: .3s;
+}
+
+#album .mySwiper1 .swiper-wrapper .swiper-slide.fade {
+  opacity: 0.5;
+  transition: .3s;
+}
+
+#album .mySwiper1 .swiper-wrapper .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#album .navigation-wrap {
+  width: 100%;
+  position: absolute;
+  bottom: -270px;
+  z-index: 6;
+
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+#album .navigation-wrap .album-more-btn {
+  padding: 12px 30px 10px 30px;
+  background: var(--color-black1);
+  color: #fff;
+  border-radius: 60px;
+  font: 500 2rem "Poppins"
+}
+
+#album .navigation-wrap #mySwiper1-prenBtn,
+#album .navigation-wrap #mySwiper1-nextBtn {
+  width: 70px;
+  height: 70px;
+  background: var(--color-black1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 36px;
+  cursor: pointer;
+}
+
+/* ! #news */
+#news {
+  width: 100%;
+  background: var(--color-white3);
+  padding: 133px 0;
+}
+
+#news .numtilte {
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+}
+
+#news .numtilte h1 {
+  font: normal 4rem "Yeoljeongdo";
+}
+
+#news .numtilte .num-box {
+  width: auto;
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  padding: 4px 15px 0 15px;
+  background: #00d440a9;
+  backdrop-filter: blur(4px);
+  border-radius: 70px;
+  border: 1px solid #fdfdfd8e;
+}
+
+#news .numtilte .num-box p {
+  font: normal 2rem "Yeoljeongdo";
+  color: var(--color-white3);
+}
+
+#news .container {
+  display: flex;
+  justify-content: space-between;
+  align-content: flex-start;
+  gap: 12.45vw;
+
+}
+
+#news .news-item-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+#news .news-item-wrap .news-item {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 2.7vw;
+
+  transition: .2s;
+
+}
+
+#news .news-item-wrap .news-item .img-wrap {
+  position: absolute;
+  left: -350px;
+  width: 327px;
+  height: 0px;
+  overflow: hidden;
+
+  transition: .2s;
+}
+
+#news .news-item-wrap .news-item:hover .img-wrap {
+  height: 209px;
+}
+
+#news .news-item-wrap .news-item:hover {
+  transform: translateY(-10px);
+
+}
+
+#news .news-item-wrap .news-item .img-wrap>img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#news .news-item-wrap .date-wrap p {
+  font: 600 0.879rem "Poppins";
+  color: var(--color-black4);
+}
+
+#news .news-item-wrap .date-wrap h3 {
+  font: 800 2.5rem "Poppins";
+  color: var(--color-black1);
+}
+
+#news .news-item-wrap .text-wrap h1 {
+  display: block;
+  font: bold 1.25rem "Pretendard";
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+
+#news .news-item-wrap .text-wrap {
+  width: 100%;
+}
+
+#news .news-item-wrap .text-wrap p {
+  font: 400 1rem "Pretendard";
+  color: var(--color-black2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-bottom: 40px;
+}
+
+#news .news-item-wrap .text-wrap a {
+  display: inline;
+  font: bold 1.125rem "Pretendard";
+  color: var(--color-green1);
+  padding: 10px 20px 10px 0;
+}
+
+#news .news-item-wrap .text-wrap a:hover {
+  color: #007022;
+}
+
+/* ! #brand */
+#brand{
+  position: relative;
+  width: 100%; height: 100vh;
+  background: var(--color-white3);
+  overflow: hidden;
+}
+#brand .loop-text{
+  position: absolute;
+  z-index: -1;
+  font: normal 5rem "Yeoljeongdo";
+  display: inline-block;
+  white-space: nowrap;
+  color: #00000050
+}
+#brand .loop-text:nth-child(1){
+  top:0;
+}
+#brand .loop-text:nth-child(4){
+  bottom:0;
+}
+#brand .brand-section{
+  width: 100%; height: 100%;
+
+}
+#brand .brand-wrap{
+  width: 100%; height: 100%;
+}
+#brand .img-wrap{
+  width: 100%; height: 100%;
+  position: absolute;
+  top:50%; left:50%;
+  transform: translate(-50%,-50%) scale(0.5);
+  /* width: 1635px; height: 920px; */
+  overflow: hidden;
+}
+#brand .img-wrap img{
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transform: skewY(0);
+}
+
+#brand .text-box{
+  position: absolute;
+  top:50%; left:142px;
+  transform: translateY(-50%);
+  z-index: 3;
+  color: var(--color-white3);
+}
+#brand .text-box h2{
+  font: normal 3rem "Yeoljeongdo";
+  margin-bottom: 40px;
+}
+#brand .text-box p{
+  width: 671px;
+  font: 500 1rem "Poppins";
+}
+
+/* ! #footer */
+#footer{
+  width: 100%; height: 701px;
+  background: var(--color-black1);
+}
+#footer .sns-wrap{
+  display: flex;
+  gap:2.5rem;
+  justify-content: center;
+  padding:156px 0;
+}
+#footer .sns-wrap li a{
+  width: 110px; height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 71px;
+  padding:30px;
+  background: var(--color-white3);
+  transition: .3s ;
+}
+#footer .sns-wrap li:hover a{
+  background: var(--color-green1);
+}
+#footer .sns-wrap li svg{
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+#footer .sns-wrap li:hover svg path{
+  transition: .3s ;
+}
+#footer .sns-wrap li:hover svg path{
+  fill: var(--color-white3);
+}
+#footer .bottom-wrap{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+#footer .bottom-wrap .fotter-logo-wrap a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+#footer .bottom-wrap .fotter-menu-wrap{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+#footer .bottom-wrap .fotter-menu-wrap .famliy-site{
+  display: flex;
+  gap: 15px;
+  font:500 1.25rem "Pretendard";
+  color: var(--color-white1);
+  white-space: nowrap;
+  margin-bottom: 30px;
+}
+#footer .bottom-wrap .fotter-menu-wrap .info-policy{
+  display: flex;
+  gap: 15px;
+  font:300 1rem "Pretendard";
+  color: var(--color-black4);
+  margin-bottom: 30px;
+}
+#footer .bottom-wrap .fotter-menu-wrap h4{
+  font:300 1rem "Pretendard";
+  color: var(--color-black4);
+  margin-bottom: 8px;
+}
+#footer .bottom-wrap .fotter-menu-wrap {
+  font:300 1rem "Pretendard";
+  color: var(--color-black4);
+}
