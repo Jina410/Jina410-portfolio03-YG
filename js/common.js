@@ -40,37 +40,75 @@ $(function () { //#header
 });
 
 // $(function () {
-//   let x = 0, y = 0;
-//   let mx = 0, my = 0; // 실제 커서 위치
-//   const $cursor = $("#cursor");
-
 //   $(window).on("mousemove", function (e) {
-//     x = e.clientX - 10;
-//     y = e.clientY - 10;
-//   });
+//     let x = e.clientX;
+//     let y = e.clientY;
 
-//   function move() {
-//     mx += (x - mx) * 0.3; // 부드럽게 이동
-//     my += (y - my) * 0.3;
-
-//     $cursor.css("transform", `translate(${mx}px, ${my}px)`);
-//     requestAnimationFrame(move);
-//   }
-
-//   move();
+//     $("#cursor").css({
+//       top: y + "px",
+//       left: x + "px"
+//     })
+//   })
+//   $('.mySwiper1').on('mouseenter', function () {
+//     $('#cursor').addClass("drag");
+//   })
+//   $('.mySwiper1').on('mouseout', function () {
+//     $('#cursor').removeClass("drag");
+//   })
 // });
 
 $(function () {
-  $(window).on("mousemove", function (e) {
-    let x = e.clientX;
-    let y = e.clientY;
+  let x = 0, y = 0, mx = 0, my = 0;
+  const $cursor = $("#cursor");
 
-    $("#cursor").css("transform", `translate(${x}px, ${y}px)`)
-  })
+  $(window).on("mousemove", function (e) {
+    x = e.clientX;
+    y = e.clientY;
+  });
+
+  function move() {
+    mx += (x - mx) * 0.1;
+    my += (y - my) * 0.1;
+
+      $cursor.css({
+      left: mx + "px",
+      top: my + "px",
+    });
+    requestAnimationFrame(move);
+  }
+  move();
+
+$(function () {
   $('.mySwiper1').on('mouseenter', function () {
     $('#cursor').addClass("drag");
+    $('#cursor span:nth-child(1)').addClass("drag-on");
   })
-  $('.mySwiper1').on('mouseout', function () {
+  $('.mySwiper1').on('mouseleave', function () {
     $('#cursor').removeClass("drag");
+    $('#cursor span:nth-child(1)').removeClass("drag-on");
   })
+})
+
+$(function () {
+  $('.overview-img_wrap,#brand').on('mouseenter', function () {
+    $('#cursor').addClass("scroll");
+    $('#cursor span:nth-child(2)').addClass("scroll-on");
+  })
+  $('.overview-img_wrap,#brand').on('mouseleave', function () {
+    $('#cursor').removeClass("scroll");
+    $('#cursor span:nth-child(2)').removeClass("scroll-on");
+  })
+})
+
+$(function () {
+  $('.artist-item, .artist-more-btn, .album-more-btn, .news-item a').on('mouseenter', function () {
+    $('#cursor').addClass("click");
+    $('#cursor span:nth-child(3)').addClass("click-on");
+  })
+  $('.artist-item, .artist-more-btn, .album-more-btn, .news-item a').on('mouseleave', function () {
+    $('#cursor').removeClass("click");
+    $('#cursor span:nth-child(3)').removeClass("click-on");
+  })
+})
+
 });
