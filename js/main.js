@@ -2,26 +2,53 @@
 $(function () {
   gsap.registerPlugin(ScrollTrigger);
 
-  const ani1 = gsap.timeline({
-    scrollTrigger: {
-      trigger: "#overview",
-      start: "top top",
-      end: "+=300%",
-      scrub: true,
-      pin: true,
-      anticipatePin: 1,
-      // markers: true,
-    }
-  });
+  ScrollTrigger.matchMedia({
 
-  ani1.to(".overview-logo", { y: 200, scale: 0.5, });
-  ani1.from(".overview-img_wrap", { top: 600, y: -200, scale: 0.85, borderRadius: 50 }, "<");
-  ani1.to(".overview-img_wrap h2:nth-child(1)", { opacity: 1, ease: "power4.out" }, "<0.3");
-  ani1.to(".overview-logo", { opacity: 0, }, "<");
-  ani1.to(".overview-img_wrap h2:nth-child(1)", { duration: 2, ease: "power4.out" }, "<0.3");
-  ani1.to(".overview-img_wrap h2:nth-child(1)", { opacity: 0, ease: "power4.out" }, "<0.5");
-  ani1.to(".overview-img_wrap h2:nth-child(2)", { opacity: 1, ease: "power4.out" }, "<0.5");
-  ani1.to(".overview-img_wrap h2:nth-child(2)", { ease: "power4.out" }, "<0.5");
+    "(min-width: 601px)": function () {
+      const ani1 = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#overview",
+          start: "top top",
+          end: "+=300%",
+          scrub: true,
+          pin: true,
+          anticipatePin: 1,
+          // markers: true,
+        }
+      });
+
+      ani1.to(".overview-logo", { y: 200, scale: 0.5, });
+      ani1.from(".overview-img_wrap", { top: 600, y: -200, scale: 0.85, borderRadius: 50 }, "<");
+      ani1.to(".overview-img_wrap h2:nth-child(1)", { opacity: 1, ease: "power4.out" }, "<0.3");
+      ani1.to(".overview-logo", { opacity: 0, }, "<");
+      ani1.to(".overview-img_wrap h2:nth-child(1)", { duration: 2, ease: "power4.out" }, "<0.3");
+      ani1.to(".overview-img_wrap h2:nth-child(1)", { opacity: 0, ease: "power4.out" }, "<0.5");
+      ani1.to(".overview-img_wrap h2:nth-child(2)", { opacity: 1, ease: "power4.out" }, "<0.5");
+      ani1.to(".overview-img_wrap h2:nth-child(2)", { ease: "power4.out" }, "<0.5");
+    },
+    "(max-width: 600px)": function () {
+      const ani1 = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#overview",
+          start: "top top",
+          end: "+=300%",
+          scrub: true,
+          pin: true,
+          anticipatePin: 1,
+          // markers: true,
+        }
+      });
+
+      ani1.to(".overview-logo", { y: 200, scale: 0.5, });
+      ani1.from(".overview-img_wrap", { top: 400, y: -200, scale: 0.85, borderRadius: 50 }, "<");
+      ani1.to(".overview-img_wrap h2:nth-child(1)", { opacity: 1, ease: "power4.out" }, "<0.3");
+      ani1.to(".overview-logo", { opacity: 0, }, "<");
+      ani1.to(".overview-img_wrap h2:nth-child(1)", { duration: 2, ease: "power4.out" }, "<0.3");
+      ani1.to(".overview-img_wrap h2:nth-child(1)", { opacity: 0, ease: "power4.out" }, "<0.5");
+      ani1.to(".overview-img_wrap h2:nth-child(2)", { opacity: 1, ease: "power4.out" }, "<0.5");
+      ani1.to(".overview-img_wrap h2:nth-child(2)", { ease: "power4.out" }, "<0.5");
+    }
+  })
 })
 
 //* #artist 애니메이션
@@ -54,19 +81,35 @@ $(function () {
       ani2.to([$artistItem2, $artistItem5], { y: -50, }, "<");
     },
     "(max-width: 1200px)": function () {
-      // #artist 관련 ScrollTrigger만 제거
       ScrollTrigger.getAll().forEach(st => {
         if (st.vars.trigger && $(st.vars.trigger).is("#artist")) {
           st.kill();
         }
       });
 
-      // 스타일 초기화 (transform 등 제거)
       gsap.set("#artist .artist-box-wrap .artist-box .artist-item", { clearProps: "all" });
     }
-
   });
 
+  //너비 768px이하 일때만 동작하는
+  //768일때 가려진 요소들이 1번 클릭때 나타나고 2번 클릭때 페이지를 이동한다.
+  let clicked = false;
+
+  $(".artist-more-btn").on("click", function (e) {
+    if (window.innerWidth <= 768) {
+      e.preventDefault(); 
+
+      if (!clicked) {
+        $(".artist-item:nth-child(4), .artist-item:nth-child(5), .artist-item:nth-child(6)").show();
+
+        clicked = true;
+      } else {
+        window.location.href = "index.html"; //페이지가 없기때문에 임시로
+      }
+    } else {
+      window.location.href = "index.html";
+    }
+  });
 
 })
 
@@ -112,17 +155,15 @@ $(function () {
       ani4.to(".album-cover-box .text-box", { opacity: 1, duration: 3 }, "<0.2")
       ani4.from(".navigation-wrap", { y: 300, opacity: 0, duration: 3 }, "<");
       ani4.from(".album-swiper-wrap", { y: 300, opacity: 0, duration: 3 }, "<");
-      ani4.to(".fade-text", { y: 200, duration: 10 }, 5)
+      ani4.to(".fade-text", { y: -200, duration: 10 }, 5)
     },
     "(max-width: 768px)": function () {
-      // #album 관련 ScrollTrigger만 제거
       ScrollTrigger.getAll().forEach(st => {
         if (st.vars.trigger && $(st.vars.trigger).is("#album")) {
           st.kill();
         }
       });
 
-      // #album 관련 요소만 초기화
       gsap.set("#album .fade-text, #album .lp-wrap, #album .album-cover-box, #album .album-cover-box img, #album .album-cover-box .text-box, #album .navigation-wrap, #album .album-swiper-wrap, #album .numtilte", {
         clearProps: "all"
       });
