@@ -112,10 +112,10 @@ $(function () {
   })
   
   $(function () {
-    $('#top').on('mouseenter', function () {
+    $('#top,#mySwiper1-nextBtn,#mySwiper1-prenBtn').on('mouseenter', function () {
       $('#cursor').addClass("top");
     })
-    $('#top').on('mouseleave', function () {
+    $('#top,#mySwiper1-nextBtn,#mySwiper1-prenBtn').on('mouseleave', function () {
       $('#cursor').removeClass("top");
     })
   })

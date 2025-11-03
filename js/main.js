@@ -8,15 +8,14 @@ $(function(){
   });
 })
 
-
 gsap.registerPlugin(ScrollTrigger);
-
 
 //* #overview 애니메이션
 $(function () {
   
   if (window.innerWidth > 600) {
     const ani1 = gsap.timeline({
+
       scrollTrigger: {
         trigger: "#overview",
         start: "top top",
